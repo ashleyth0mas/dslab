@@ -76,7 +76,7 @@ int BracketsBalanced(char exp[])
 int main()
 {
     char exp[SIZE];
-    printf("Enter an experession : ");
+    printf("Enter an expression : ");
     scanf("%s",exp);
     int flag=BracketsBalanced(exp);
     if(flag)
