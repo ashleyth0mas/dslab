@@ -1,66 +1,30 @@
 
-
-#include<stdio.h>
-struct matrix{
-    int row;
-    int column;
-    int value;
-};
+#include <stdio.h>
 int main()
 {
-    int n,i,j,m,a[20][20];
-    struct matrix k[300];
-    printf("Enter the matrix\n");
-    printf("Enter the number of rows \n");
-    scanf("%d",&n);
-    printf("Enter the number of columns\n");
-    scanf("%d",&m);
-    printf("Enter the elements\n");
-    for(i=0;i<n;i++)
+    typedef struct
     {
-        for(j=0;j<m;j++)
-        {
-            scanf("%d",&a[i][j]);
-        }
-    }
-    k[0].row=n;
-    k[0].column=m;
-    int c=1;
-    int p=0;
-    for(i=0;i<n;i++)
+        int row;
+        int col;
+        int value;
+    } elements;
+    elements sparse[100];
+    int rownum, colnum, count;
+    printf("Enter total number of rows, columns and non-zero values : ");
+    scanf("%d%d%d", &rownum, &colnum, &count);
+    printf("Enter row, column and non-zero value : \n");
+    for (int i = 1; i <= count; i++)
     {
-        for(j=0;j<m;j++)
-        {
-            if(a[i][j]!=0)
-            {
-                k[c].row=i;
-                k[c].column=j;
-                k[c].value=a[i][j];
-                c++;
-                p++;
-            }
-        }
+        scanf("%d%d%d", &sparse[i].row, &sparse[i].col, &sparse[i].value);
     }
-    int l=0;
-    for(i=0;i<n;i++)
-    {
-        for(j=0;j<m;j++)
-        {
-            if(a[i][j]==0)
-            {
-                l++;
-            }
-        }
-    }
-    k[0].value=p;
-    printf("\n\n");
-    printf("Row\tColumn\tValue\n");
-    for(i=0;i<=p;i++)
-    {
-        printf("%d\t%d\t%d\n",k[i].row,k[i].column,k[i].value);
-    }
-    float num,sparsity;
-    num=m*n;
-    sparsity=l/num;
-    printf("Sparsity of a matrix : %f",sparsity);
+    sparse[0].row = rownum;
+    sparse[0].col = colnum;
+    sparse[0].value = count;
+    printf("Sparse representation is : \n");
+    for (int i = 0; i <= count; i++)
+            printf("%d\t%d\t%d\n", sparse[i].row, sparse[i].col, sparse[i].value);
+        float sparsity = (float)(sparse[0].row * sparse[0].col - sparse[0].value) / (sparse[0].row *      sparse[0].col);
+    printf("Sparsity : %0.2f\n", sparsity);
 }
+
+
