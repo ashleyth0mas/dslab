@@ -3,12 +3,12 @@
 #define MAX_TERMS 100
 typedef struct
 {
-    float coef;
+    int coef;
     int expon;
 }poly;
 poly terms[MAX_TERMS];
 int avail;
-void attach(float coefficent,int exponent)
+void attach(int coefficent,int exponent)
 {
         if(avail>=MAX_TERMS)
         printf("Too many terms in the polynomial\n");
@@ -29,7 +29,7 @@ int COMPARE(int a,int b)
 }
 void add(int startA,int finishA,int startB,int finishB,int *startD,int *finishD)
 {
-    float coefficent;
+    int coefficent;
    *startD=avail;
     while(startA<=finishA&&startB<=finishB)
     {
@@ -66,13 +66,13 @@ void add(int startA,int finishA,int startB,int finishB,int *startD,int *finishD)
 void pyprint(int start,int finish)
 {
     int i;
-    printf("\n%fx^%d ",terms[start].coef,terms[start].expon);
+    printf("\n%dx^%d ",terms[start].coef,terms[start].expon);
     for(i=start+1;i<=finish;i++)
     {
          if(terms[i].expon==0)
-            printf("+ %f ",terms[i].coef);
+            printf("+ %d ",terms[i].coef);
         else
-            printf("+ %fx^%d ",terms[i].coef,terms[i].expon);
+            printf("+ %dx^%d ",terms[i].coef,terms[i].expon);
     }
     printf("\n");
 }
@@ -93,7 +93,7 @@ void main()
     for(i=startA;i<=finishA;i++)
     {
         printf("\nCoefficient: ");
-        scanf("%f",&terms[i].coef);
+        scanf("%d",&terms[i].coef);
         printf("\nExponent: ");
         scanf("%d",&terms[i].expon);
     }
@@ -101,7 +101,7 @@ void main()
     for(i=startB;i<=finishB;i++)
     {
         printf("\nCoefficient: ");
-        scanf("%f",&terms[i].coef);
+        scanf("%d",&terms[i].coef);
         printf("\nExponent: ");
         scanf("%d",&terms[i].expon);
     }
